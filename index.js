@@ -5,7 +5,7 @@ const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
   var ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
-  var cmd = "./verify-ip.sh $ip"
+  var cmd = `./verify-ip.sh ${ip}`;
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
