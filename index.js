@@ -4,7 +4,6 @@ const port = 3000
 const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
-  //get public ip address from request
   const ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
   res.send(`Your IP is: ${ip}`)
 })
@@ -16,10 +15,10 @@ app.get('/verify', (req, res) => {
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
+    }else{
+      res.send(stdout) // Print the public ip address
     }
-    res.send(stdout) // Print the public ip address
   });
-
 })
 
 app.get('/addip', (req, res) => {
@@ -28,8 +27,9 @@ app.get('/addip', (req, res) => {
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
+    }else{
+      res.send(stdout) // Print the public ip address
     }
-    res.send(stdout) // Print the public ip address
   });
 })
 
