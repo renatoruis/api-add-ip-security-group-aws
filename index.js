@@ -4,15 +4,16 @@ const port = 3000
 const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
-  var ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
-  var cmd = `./verify-ip.sh ${ip}`;
-  exec(cmd, (error, stdout, stderr) => {
-    if (error) {
-      res.send(`Error: ${error}`)
-    }else{
-      res.send(stdout) // Print the public ip address
-    }
-  });
+  res.send(req.headers);
+  // var ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
+  // var cmd = `./verify-ip.sh ${ip}`;
+  // exec(cmd, (error, stdout, stderr) => {
+  //   if (error) {
+  //     res.send(`Error: ${error}`)
+  //   }else{
+  //     res.send(stdout) // Print the public ip address
+  //   }
+  // });
 })
 
 //path to verify if ip is in the list
