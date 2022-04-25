@@ -5,14 +5,14 @@ const command =  require('child_process').exec
 
 app.get('/', (req, res) => {
   //get public ip address from request
-  var ip = req.headers['X-Real-IP '] || req.connection.remoteAddress;
+  var ip = req.headers['X-Real-IP '];
   res.send(`Your IP is: ${ip}`)
 })
 
 //path to verify if ip is in the list
 app.get('/verify', (req, res) => {
   const ip = req.headers['X-Real-IP '];
-  const cmd = `./verify-ip.sh ${ip}`
+  const cmd = "./verify-ip.sh $ip"
   command(cmd, (err, stdout, stderr) => {
     if (err) {
       res.send(err)
