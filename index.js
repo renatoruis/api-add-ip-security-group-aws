@@ -4,14 +4,14 @@ const port = 3000
 const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
-  const ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
+  var ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
   res.send(`Your IP is: ${ip}`)
 })
 
 //path to verify if ip is in the list
 app.get('/verify', (req, res) => {
-  const ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
-  const cmd = 'verify-ip.sh ' + ip
+  var ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
+  var cmd = 'verify-ip.sh ' + ip
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
@@ -22,8 +22,8 @@ app.get('/verify', (req, res) => {
 })
 
 app.get('/addip', (req, res) => {
-  const ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
-  const cmd = 'add-ip.sh ' + ip
+  var ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
+  var cmd = 'add-ip.sh ' + ip
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
