@@ -5,7 +5,7 @@ const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
-  var cmd = `./scripts/verify-ip.sh ${ip}`;
+  var cmd = `ls -lah`;
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 //path to verify if ip is in the list
 app.get('/verify', (req, res) => {
   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
-  var cmd = `./scripts/verify-ip.sh ${ip}`;
+  var cmd = `src/scripts/verify-ip.sh ${ip}`;
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
@@ -30,7 +30,7 @@ app.get('/verify', (req, res) => {
 
 app.get('/addip', (req, res) => {
   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
-  var cmd = `./scripts/add-ip.sh ${ip}`;
+  var cmd = `src/scripts/add-ip.sh ${ip}`;
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       res.send(`Error: ${error}`)
