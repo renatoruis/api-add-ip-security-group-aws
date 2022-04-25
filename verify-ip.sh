@@ -1,5 +1,4 @@
 #!/bin/bash
-
 SG_ID='sg-05e2452adb3981e96'
 IP=$1
 
