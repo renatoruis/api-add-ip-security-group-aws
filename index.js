@@ -4,7 +4,7 @@ const port = 3000
 const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
-  res.send(req.headers);
+  res.send(req.headers['x-real-ip'] || req.connection.remoteAddress);
   // var ip = req.headers['X-Real-IP'] || req.connection.remoteAddress;
   // var cmd = `./verify-ip.sh ${ip}`;
   // exec(cmd, (error, stdout, stderr) => {
