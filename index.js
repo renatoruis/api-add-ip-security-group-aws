@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 //path to verify if ip is in the list
 app.get('/verify', (req, res) => {
   const ip = req.headers['X-Real-IP '];
-  const cmd = `verify-ip.sh ${ip}`
+  const cmd = `./verify-ip.sh ${ip}`
   command(cmd, (err, stdout, stderr) => {
     if (err) {
       res.send(err)
@@ -28,7 +28,7 @@ app.get('/addip', (req, res) => {
   const ip = req.headers['X-Real-IP '];
 
   // execute shell command to add the ip to the whitelist
-  const cmd = `add-ip-to-sg.sh ${ip}`
+  const cmd = `./add-ip-to-sg.sh ${ip}`
   console.log(cmd)
   require('child_process').exec(cmd, (err, stdout, stderr) => {
     if (err) {
