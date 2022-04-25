@@ -5,14 +5,7 @@ const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
   var ip = req.headers['x-real-ip'] || req.connection.remoteAddress;
-  var cmd = `ls -lah`;
-  exec(cmd, (error, stdout, stderr) => {
-    if (error) {
-      res.send(`Error: ${error}`)
-    }else{
-      res.send(stdout) // Print the public ip address
-    }
-  });
+  res.send(ip)
 })
 
 //path to verify if ip is in the list
