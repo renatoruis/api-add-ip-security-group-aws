@@ -5,7 +5,14 @@ const exec = require('child_process').exec;
 
 app.get('/', (req, res) => {
   var ip = req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
-  res.send(`Your IP is: ${ip}`)
+  var cmd = "./verify-ip.sh $ip"
+  exec(cmd, (error, stdout, stderr) => {
+    if (error) {
+      res.send(`Error: ${error}`)
+    }else{
+      res.send(stdout) // Print the public ip address
+    }
+  });
 })
 
 //path to verify if ip is in the list
