@@ -5,6 +5,7 @@ IP=$1
 
 # Add IP to SG
 aws ec2 authorize-security-group-ingress \
+  --region us-east-1 \
   --group-id $SG_ID \
   --protocol tcp \
   --port 3306 \
