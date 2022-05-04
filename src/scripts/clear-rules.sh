@@ -6,3 +6,5 @@ for i in $(aws ec2 describe-security-group-rules --filter Name="group-id",Values
 do
   aws ec2 revoke-security-group-ingress --group-id $SG_ID --security-group-rule-ids $i;
 done
+
+# /api-add-ip-security-group-aws/src/scripts/clear-rules.sh
